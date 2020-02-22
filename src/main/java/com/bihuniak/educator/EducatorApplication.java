@@ -1,6 +1,6 @@
 package com.bihuniak.educator;
 
-import com.bihuniak.educator.basic.MyFirstEntity;
+import com.bihuniak.educator.basic.Car;
 import com.bihuniak.educator.basic.MyFirstRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -20,7 +20,7 @@ public class EducatorApplication {
 
 	@PostConstruct
 	public void init() {
-		MyFirstEntity myFirstEntity = new MyFirstEntity();
-		myFirstRepository.save(myFirstEntity);
+		Car car = new Car("A4", "Audi", 4, 2.0, );
+		myFirstRepository.save(car);
 	}
 }
