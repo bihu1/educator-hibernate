@@ -30,4 +30,16 @@ public class Car {
 
     public Car() {
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+            "id=" + id +
+            ", model='" + model + '\'' +
+            ", brand='" + brand + '\'' +
+            ", wheels=" + wheels +
+            ", engineCapacity=" + engineCapacity +
+            ", secondHand=" + secondHand +
+            '}';
+    }
 }
