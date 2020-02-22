@@ -20,7 +20,7 @@ public class EducatorApplication {
 
 	@PostConstruct
 	public void init() {
-		Car car = new Car("A4", "Audi", 4, 2.0, );
+		Car car = new Car("A4", "Audi", 4, 2.0, true);
 		myFirstRepository.save(car);
 	}
 }
