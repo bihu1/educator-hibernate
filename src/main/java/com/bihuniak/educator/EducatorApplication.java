@@ -2,6 +2,9 @@ package com.bihuniak.educator;
 
 import com.bihuniak.educator.basic.Car;
 import com.bihuniak.educator.basic.MyFirstRepository;
+import com.bihuniak.educator.human.Human;
+import com.bihuniak.educator.human.HumanRepository;
+import com.bihuniak.educator.human.Sex;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -18,6 +21,8 @@ public class EducatorApplication {
 	@Autowired
 	private MyFirstRepository myFirstRepository;
 
+	@Autowired
+	private HumanRepository humanRepository;
 
 	public static void main(String[] args) {
 		SpringApplication.run(EducatorApplication.class, args);
@@ -25,14 +30,8 @@ public class EducatorApplication {
 
 	@PostConstruct
 	public void init() {
-	Car car = new Car(0, null, null, 3, 3465d, false);
-//		Car car2 = new Car(0, "A5", "AUDI3", 2, 5465d, true);
-//		Car car3 = new Car(0, "A6", "AUDI2", 1, 4565d, true);
-//		Car car4 = new Car(0, "A7", "AUDI1", 4, 5675d, false);
-//		myFirstRepository.saveAll(asList(car));
+		Human janusz = new Human(0, "Janusz", "Tkacz", Sex.SECRET, new Date(1980, 10, 10));
+		humanRepository.save(janusz);
 
-		myFirstRepository.save(car);
-//		Car car2 = myFirstRepository.findById(1L).get();
-//		System.out.println(car2);
 	}
 }

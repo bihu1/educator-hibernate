@@ -3,7 +3,6 @@ package com.bihuniak.educator.basic;
 import javax.persistence.*;
 
 @Entity(name = "asd")
-
 public class Car {
 
     @Id
