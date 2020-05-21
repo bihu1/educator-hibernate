@@ -2,10 +2,11 @@ package com.bihuniak.educator;
 
 import com.bihuniak.educator.basic.Car;
 import com.bihuniak.educator.basic.MyFirstRepository;
-import com.bihuniak.educator.human.Address;
-import com.bihuniak.educator.human.Human;
-import com.bihuniak.educator.human.HumanRepository;
-import com.bihuniak.educator.human.Sex;
+import com.bihuniak.educator.company.Department;
+import com.bihuniak.educator.company.DepartmentRepository;
+import com.bihuniak.educator.company.Employee;
+import com.bihuniak.educator.company.EmployeeRepository;
+import com.bihuniak.educator.human.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -26,20 +27,29 @@ public class EducatorApplication {
 	@Autowired
 	private HumanRepository humanRepository;
 
+	@Autowired
+	private EmployeeRepository employeeRepository;
+
+	@Autowired
+	private DepartmentRepository departmentRepository;
+
 	public static void main(String[] args) {
 		SpringApplication.run(EducatorApplication.class, args);
 	}
 
 	@PostConstruct
 	public void init() {
-		Human janusz = new Human(0,
-			"Janusz",
-			"Tkacz",
-			Sex.SECRET,
-			LocalDate.of(1980, 5,5),
-			new Address("Waganowa", "Wroclaw", "POLAND", "44-444")
-		);
-		humanRepository.save(janusz);
+		Employee employee = new Employee("Januszek", "Art Master");
+		Employee employee1 = new Employee("Graszka", "Head of Designers");
+		Employee employee2 = new Employee("Halynka", "Designer");
 
+		Department department = new Department(
+			"Marketing",
+			"Wroclaw",
+			5,
+			asList(employee, employee1, employee2));
+
+		departmentRepository.save(department);
+//		System.out.println(departmentRepository.findById(5L).get());
 	}
 }

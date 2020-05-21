@@ -2,7 +2,9 @@ package com.bihuniak.educator.human;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Human {
@@ -15,18 +17,23 @@ public class Human {
     @Enumerated(value = EnumType.STRING)
     private Sex sex;
     private LocalDate birthday;
-    @Embedded
-    private Address address;
+
+    @ElementCollection
+    private List<Address> addresses;
+
+    @ElementCollection
+    private List<String> phones = new ArrayList<>();
 
     public Human() {
     }
 
-    public Human(long id, String firstName, String lastName, Sex sex, LocalDate birthday, Address address) {
+    public Human(long id, String firstName, String lastName, Sex sex, LocalDate birthday, List<Address> addresses, List<String> phones ) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.sex = sex;
         this.birthday = birthday;
-        this.address = address;
+        this.addresses = addresses;
+        this.phones = phones;
     }
 }

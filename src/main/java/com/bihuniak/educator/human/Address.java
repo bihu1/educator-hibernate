@@ -1,6 +1,7 @@
 package com.bihuniak.educator.human;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 
 @Embeddable
 public class Address {
