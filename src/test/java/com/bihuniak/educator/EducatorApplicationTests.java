@@ -1,32 +1,37 @@
 package com.bihuniak.educator;
 
 import com.bihuniak.educator.animal.*;
+import com.bihuniak.educator.file.DbFile;
+import com.bihuniak.educator.file.DbFileRepository;
+import org.apache.commons.io.IOUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @SpringBootTest
 class EducatorApplicationTests {
 
 	@Autowired
-	private CatRepository catRepository;
+	private DbFileRepository dbFileRepository;
 
-	@Autowired
-	private PandaRepository pandaRepository;
-
-	@Autowired
-	private TigerRepository tigerRepository;
 
 	@Test
-	void contextLoads() {
-		Cat cat = new Cat("kotowate", "mruczek", true);
-		catRepository.save(cat);
-		Panda panda = new Panda("niedzwiedziowate", "Gumis", false);
-		pandaRepository.save(panda);
-		Tiger tiger = new Tiger("kotowate", "burek", false, 50);
-		tigerRepository.save(tiger);
-//		System.out.println(catRepository.findById(5L).get().getName());
-//		System.out.println(pandaRepository.findById(6L).get().getName());
+	void contextLoads() throws IOException {
+		InputStream resourceAsStream = getClass().getClassLoader().getResourceAsStream("download.jpg");
+		byte[] bytes = IOUtils.toByteArray(resourceAsStream);
+		DbFile dbFile = new DbFile(bytes);
+		dbFileRepository.save(dbFile);
+	}
+
+	@Test
+	void contextLoads2() throws IOException {
+		DbFile dbFile = dbFileRepository.findById(5L).get();
+		Files.write(Paths.get("abcd2.jpg"), dbFile.getContent());
 	}
 
 }
