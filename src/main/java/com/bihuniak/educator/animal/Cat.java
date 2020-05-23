@@ -1,8 +1,9 @@
 package com.bihuniak.educator.animal;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Cat extends Animal{
     private boolean fluffy;
     @Override

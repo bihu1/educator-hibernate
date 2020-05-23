@@ -1,10 +1,9 @@
 package com.bihuniak.educator.animal;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
-@MappedSuperclass
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Animal {
     @Id
     @GeneratedValue
